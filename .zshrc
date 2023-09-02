@@ -46,9 +46,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # enable path sourcing for gcloud components
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 # enable shell command completion for gcloud
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # add kubectl autocomplete permanently to your zsh shell
 [ $commands[kubectl] ] && source <(kubectl completion zsh)
@@ -148,7 +148,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # asdf config
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
+source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 # pyenv config
 export PYENV_ROOT="$HOME/.pyenv"
