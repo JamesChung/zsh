@@ -22,17 +22,22 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 # Created by `userpath`
 export PATH="$PATH:$HOME/.local/bin"
 
-# Set for Chrome Debugging
+# Set for Chrome Debugging with Brave
 export CHROME_EXECUTABLE='/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
 
 # Enable GKE kubernetes plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # If Go is installed export GOPATH and go binaries
-[ $commands[go] ] && export GOPATH=$(go env GOPATH); export PATH=$PATH:$GOPATH/bin
+if command -v go >/dev/null 2>&1; then
+    export GOPATH=$(go env GOPATH)
+    export PATH=$PATH:$GOPATH/bin
+fi
 
 # If vcpkg is installed export the VCPKG_ROOT path
-[ $commands[vcpkg] ] && export VCPKG_ROOT="$HOME/vcpkg"
+if command -v vcpkg >/dev/null 2>&1; then
+    export VCPKG_ROOT="$HOME/vcpkg"
+fi
 
 # oh-my-zsh configuration
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -45,22 +50,27 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# enable path sourcing for gcloud components
-source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-# enable shell command completion for gcloud
-source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+if command -v gcloud >/dev/null 2>&1; then
+    # enable path sourcing for gcloud components
+    source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+    # enable shell command completion for gcloud
+    source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+fi
 
 # add kubectl autocomplete permanently to your zsh shell
-[ $commands[kubectl] ] && source <(kubectl completion zsh)
+if command -v kubectl >/dev/null 2>&1; then
+    source <(kubectl completion zsh)
+fi
 
 # add helm autocomplete
-[ $commands[helm] ] && source <(helm completion zsh)
+if command -v helm >/dev/null 2>&1; then
+    source <(helm completion zsh)
+fi
 
 # add cprl autocomplete
-[ $commands[cprl] ] && source <(cprl completion zsh); compdef _cprl cprl
-
-# add atuin autocomplete
-[ $commands[atuin] ] && source <(atuin gen-completions --shell=zsh)
+if command -v cprl >/dev/null 2>&1; then
+    source <(cprl completion zsh); compdef _cprl cprl
+fi
 
 #### Custom Aliases ####
 
@@ -76,7 +86,7 @@ alias ll="ls -l"
 alias uge="zsh $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/MacOSConfigs/upgrade_everything.sh"
 
 # Clears .zsh_history file.
-alias clhis="echo "" > $HOME/.zsh_history && rm ~/.local/share/atuin/*"
+alias clhis="echo "" > $HOME/.zsh_history
 
 # Update yarn to latest stable version
 alias yarn-up='corepack prepare yarn@stable --activate'
@@ -89,7 +99,7 @@ alias npx-clear="if [ -d $HOME/.npm/_npx ]; then rm -rf $HOME/.npm/_npx; echo '>
 
 # Updates all docker images
 docker-update() {
-  if [ $commands[docker] ]; then
+  if command -v docker >/dev/null 2>&1; then
     images=(`docker images --format="{{.Repository}}:{{.Tag}}"`)
     if [ ${#images[@]} -gt 0 ]; then
       for image in ${images[@]}; do
@@ -127,17 +137,16 @@ kind-delete() {
 }
 
 books() {
-  cd ~/Projects/git/safaribooks
+  cd ~/git/safaribooks
   docker run --rm -it -v "$PWD":/root/safari jamesechung/safari:0.1 bash
 }
 
 ######################## INIT ########################
 
 # Starship init
-eval "$(starship init zsh)"
-
-# Atuin init
-eval "$(atuin init zsh)"
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
 
 # oh-my-zsh by default pipes to less... This disables that
 unset LESS;
@@ -151,6 +160,14 @@ export NVM_DIR="$HOME/.nvm"
 source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 # pyenv config
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if command -v pyenv >/dev/null 2>&1; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+# fzf config
+eval "$(fzf --zsh)"
+
+# zoxide config
+eval "$(zoxide init --cmd cd zsh)"
