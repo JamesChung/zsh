@@ -10,6 +10,9 @@ autoload -U compinit; compinit
 # Path to iCloud
 export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
+# Path to iBooks books
+export IBOOKS="$HOME/Library/Mobile Documents/iCloud~com~apple~iBooks/Documents"
+
 # Path to eDEX-UI settings
 export EDEX_UI="$HOME/Library/Application Support/eDEX-UI"
 
@@ -85,12 +88,6 @@ alias ll="ls -l"
 # Upgrades everything
 alias uge="zsh $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/MacOSConfigs/upgrade_everything.sh"
 
-# Clears .zsh_history file.
-alias clhis="echo "" > $HOME/.zsh_history
-
-# Update yarn to latest stable version
-alias yarn-up='corepack prepare yarn@stable --activate'
-
 # Deletes npm logs
 alias npm-clear="if [ -d $HOME/.npm/_logs ]; then rm -rf $HOME/.npm/_logs; echo '> Deleted npm logs.'; else; echo '> No npm logs.'; fi"
 
@@ -138,7 +135,7 @@ kind-delete() {
 
 books() {
   cd ~/git/safaribooks
-  docker run --rm -it -v "$PWD":/root/safari jamesechung/safari:0.1 bash
+  docker run --rm -it -v "$PWD":/root/safari jamesechung/safari:latest bash
 }
 
 ######################## INIT ########################
@@ -155,9 +152,6 @@ unset LESS;
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# asdf config
-source "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh"
 
 # pyenv config
 if command -v pyenv >/dev/null 2>&1; then
