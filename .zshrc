@@ -133,11 +133,6 @@ kind-delete() {
   fi
 }
 
-books() {
-  cd ~/git/safaribooks
-  docker run --rm -it -v "$PWD":/root/safari jamesechung/safari:latest bash
-}
-
 ######################## INIT ########################
 
 # Starship init
