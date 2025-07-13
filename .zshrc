@@ -1,6 +1,12 @@
 # Disallows zsh to prompt y/n on * deletion
 setopt rmstarsilent
 
+# Default TUI editor
+export EDITOR=nvim
+
+# Default GUI editor
+export VISUAL=code
+
 # Cache ZSH compdump files
 export ZDOTDIR=$HOME/.zsh
 
