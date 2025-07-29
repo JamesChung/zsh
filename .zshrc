@@ -166,3 +166,6 @@ eval "$(fzf --zsh)"
 
 # zoxide config
 eval "$(zoxide init --cmd cd zsh)"
+
+# pixi autocomplete
+eval "$(pixi completion --shell zsh)"
