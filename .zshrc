@@ -161,11 +161,22 @@ if command -v pyenv >/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
+# Load Angular CLI autocompletion.
+if command -v ng >/dev/null 2>&1; then
+    source <(ng completion script)
+fi
+
 # fzf config
-eval "$(fzf --zsh)"
+if command -v fzf >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+fi
 
 # zoxide config
-eval "$(zoxide init --cmd cd zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
 
 # pixi autocomplete
-eval "$(pixi completion --shell zsh)"
+if command -v pixi >/dev/null 2>&1; then
+    eval "$(pixi completion --shell zsh)"
+fi
