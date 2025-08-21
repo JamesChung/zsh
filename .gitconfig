@@ -1,0 +1,27 @@
+[user]
+	name = James Chung
+	email = james@chung.contact
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	followTags = true
+[merge]
+	conflictStyle = zdiff3
+[core]
+	editor = vim
+	pager = delta
+[delta]
+	navigate = true      # use n and N to move between diff sections
+	dark = true          # or light = true, or omit for auto-detection
+	side-by-side = true
+	line-numbers = true
+[interactive]
+	diffFilter = delta --color-only
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
