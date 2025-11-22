@@ -20,7 +20,6 @@ $erlang\
 $golang\
 $helm\
 $java\
-$kotlin\
 $nodejs\
 $ocaml\
 $perl\
@@ -86,9 +85,6 @@ disabled = true
 
 [gcloud]
 disabled = true
-# symbol = "🌐 "
-# format = 'on [$symbol$account(@$domain)(\[$project\])(\($region\))]($style) '
-# format = 'on [$symbol(\[$project\])(\($region\))]($style) '
 
 [nodejs]
 format = "via [$symbol($version)]($style) "
@@ -96,3 +92,21 @@ format = "via [$symbol($version)]($style) "
 [kubernetes]
 disabled = false
 format = '[$symbol$context( \($namespace\))]($style) '
+
+[java]
+symbol = "☕"
+format = "via [$symbol($version)]($style) "
+detect_extensions = ["java", "class", "jar", "gradle", "clj", "cljc"]
+detect_files = [
+    "pom.xml",
+    "gradlew",
+    "settings.gradle.kts",
+    "build.gradle.kts",
+    "build.gradle",
+    "build.sbt",
+    ".java-version",
+    "deps.edn",
+    "project.clj",
+    "build.boot",
+    ".sdkmanrc",
+]
