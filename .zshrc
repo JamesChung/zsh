@@ -16,9 +16,6 @@ export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 # Path to iBooks books
 export IBOOKS="$HOME/Library/Mobile Documents/iCloud~com~apple~iBooks/Documents"
 
-# Path to eDEX-UI settings
-export EDEX_UI="$HOME/Library/Application Support/eDEX-UI"
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -117,7 +114,7 @@ alias l.="ls -d .*"
 alias ll="ls -l"
 
 # Upgrades everything
-alias uge="zsh $HOME/Library/Mobile\ Documents/com~apple~CloudDocs/MacOSConfigs/upgrade_everything.sh"
+alias uge="zsh $HOME/.zsh/upgrade_everything.sh"
 
 # Deletes npm logs
 alias npm-clear="if [ -d $HOME/.npm/_logs ]; then rm -rf $HOME/.npm/_logs; echo '> Deleted npm logs.'; else; echo '> No npm logs.'; fi"
@@ -252,8 +249,3 @@ export PATH="$PATH:/Users/jameschung/.cache/lm-studio/bin"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/jameschung/.docker/completions $fpath)
 # End of Docker CLI completions
-
-autoload -Uz compinit
-compinit
-
-
