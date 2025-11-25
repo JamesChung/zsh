@@ -42,16 +42,6 @@ if command -v vcpkg >/dev/null 2>&1; then
     export VCPKG_ROOT="$HOME/vcpkg"
 fi
 
-# Lazy-load jenv (loads on first use)
-if command -v jenv >/dev/null 2>&1; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    jenv() {
-        unfunction jenv
-        eval "$(command jenv init -)"
-        jenv "$@"
-    }
-fi
-
 # oh-my-zsh configuration
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -249,3 +239,7 @@ export PATH="$PATH:/Users/jameschung/.cache/lm-studio/bin"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/jameschung/.docker/completions $fpath)
 # End of Docker CLI completions
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
