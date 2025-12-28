@@ -97,7 +97,7 @@ fi
 
 # eza aliases (modern ls replacement)
 if command -v eza >/dev/null 2>&1; then
-    alias ls="eza --icons"
+    alias ls="eza --icons -F"
     alias l.="eza -d .*"
     alias ll="eza -l --icons"
     alias la="eza -la --icons"
@@ -105,6 +105,7 @@ if command -v eza >/dev/null 2>&1; then
     alias llt="eza -l --tree --icons"      # Long list with tree
     alias lls="eza -l --sort=size --icons" # Sort by size
     alias lld="eza -lD --icons"            # Directories only
+    alias lll="eza -l --icons -H"          # Show hard links count
 else
     alias ls="ls -F --color=auto"
     alias l.="ls -d .*"
