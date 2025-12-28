@@ -95,13 +95,21 @@ fi
 
 #### Custom Aliases ####
 
-# Shows folders
-alias ls="ls -F --color=auto"
-
-# Shows hidden directories/files
-alias l.="ls -d .*"
-
-alias ll="ls -l"
+# eza aliases (modern ls replacement)
+if command -v eza >/dev/null 2>&1; then
+    alias ls="eza --icons"
+    alias l.="eza -d .*"
+    alias ll="eza -l --icons"
+    alias la="eza -la --icons"
+    alias lt="eza --tree --icons"
+    alias llt="eza -l --tree --icons"      # Long list with tree
+    alias lls="eza -l --sort=size --icons" # Sort by size
+    alias lld="eza -lD --icons"            # Directories only
+else
+    alias ls="ls -F --color=auto"
+    alias l.="ls -d .*"
+    alias ll="ls -l"
+fi
 
 # Upgrades everything
 alias uge="zsh $HOME/.zsh/upgrade_everything.sh"
