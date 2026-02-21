@@ -112,6 +112,19 @@ else
     alias ll="ls -l"
 fi
 
+#### Suffix Aliases ####
+
+if command -v bat >/dev/null 2>&1; then
+    alias -s md="bat"
+fi
+
+if [[ -n "$EDITOR" ]]; then
+    alias -s go="$EDITOR"
+    alias -s java="$EDITOR"
+    alias -s js="$EDITOR"
+    alias -s ts="$EDITOR"
+fi
+
 # Upgrades everything
 alias uge="zsh $HOME/.zsh/upgrade_everything.sh"
 
@@ -120,6 +133,11 @@ alias npm-clear="if [ -d $HOME/.npm/_logs ]; then rm -rf $HOME/.npm/_logs; echo 
 
 # Clears npx cache
 alias npx-clear="if [ -d $HOME/.npm/_npx ]; then rm -rf $HOME/.npm/_npx; echo '> Deleted npx cache.'; else; echo '> No npx cache.'; fi"
+
+# chpwd hook runs whenever you change the working directory
+chpwd() {
+    ls
+}
 
 # Updates all docker images
 docker-update() {
