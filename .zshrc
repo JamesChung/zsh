@@ -240,7 +240,7 @@ if command -v ng >/dev/null 2>&1; then
     }
 fi
 
-# fzf config
+# fzf config (ctrl + r) [~/.zsh_history]
 if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --zsh)"
 fi
@@ -270,3 +270,6 @@ fpath=(/Users/jameschung/.docker/completions $fpath)
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Added by Antigravity
+export PATH="/Users/jameschung/.antigravity/antigravity/bin:$PATH"

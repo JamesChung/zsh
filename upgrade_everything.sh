@@ -31,13 +31,9 @@ function upgrade() {
     echo "> Upgrading rust..."
     rustup update
   fi
-  # if command -v pip >/dev/null 2>&1; then
-  #   echo "> Upgrading pip..."
-  #   upgrade_pip_packages
-  # fi
-  if command -v pipx >/dev/null 2>&1; then
+  if command -v uv >/dev/null 2>&1; then
     echo "> Upgrading pipx..."
-    pipx upgrade-all
+    uv tool upgrade --all
   fi
   if command -v npm >/dev/null 2>&1; then
     echo "> Listing outdated global npm packages..."
